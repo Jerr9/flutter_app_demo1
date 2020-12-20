@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +27,59 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "ProductList"
+          ),
+        ),
+        body: HomeContent(),
+      )
+    );
+  }
+}
+
+class HomeContent extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext buildContext) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: ListView(
+          children: <Widget> [
+            // Text("hello"),
+            // Text("wrold"),
+            // Text("kugou"),
+            ProductItem(),
+            ProductItem(),
+            ProductItem(),
+          ]
+      ),
+    );
+  }
+}
+
+class ProductItem extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext buildContext) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+
+        border: Border.all(
+          width: 1,
+          color: Colors.black,
+          style: BorderStyle.solid,
+        ),
+      ),
+      child: Column(
+          children: <Widget> [
+            Text("hello", style: TextStyle(fontSize: 30, color: Colors.blue)),
+            Text("wrold"),
+            Image.network("https://i1.hdslb.com/bfs/face/c850c18ae6b507d0ef34837f53a51090b6a7451f.jpg", width: 350, height: 350)
+          ]
+      )
     );
   }
 }
@@ -51,17 +104,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +149,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
