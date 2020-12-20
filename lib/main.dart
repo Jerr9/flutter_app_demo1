@@ -11,13 +11,12 @@ void main() {
           ),
         ),
         body: Center(
-          child: Text(
-            "Hello world",
-            textDirection: TextDirection.ltr, // ltr: left to right, rtl: right to left
-            style: TextStyle(
-              color: Colors.yellow,
-              fontSize: 22
-            )
+          child: Container(
+            child: MyComp(btnText: "CustomText"),
+            color: Colors.greenAccent,
+            // width: 1000,
+            // height: 100,
+            // alignment: Alignment.center
           )
         ),
         floatingActionButton: ButtonBar(
@@ -31,5 +30,25 @@ void main() {
       )
     )
   );
+}
+
+class MyComp extends StatelessWidget {
+  String btnText;
+  String text2 = "abc";
+  MyComp({this.btnText = "default-text"}) {
+    print("MyComp initial");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+        "${btnText + "-" + text2}",
+        textDirection: TextDirection.ltr, // ltr: left to right, rtl: right to left
+        style: TextStyle(
+            color: Colors.yellow,
+            fontSize: 22
+        )
+    );
+  }
 }
 
