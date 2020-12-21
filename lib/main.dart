@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_app_demo1/model/data.dart';
 
@@ -95,6 +96,15 @@ class MyTextWidget2State extends State<MyTextWidget2> {
   @override
   Widget build(BuildContext context) {
     buildList();
+    _launchURL() async {
+      const url = 'https://flutter.cn';
+      if (await canLaunch(url)) {
+        print("sure");
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
     return Container(
         child: Row(
           children: [
@@ -111,7 +121,6 @@ class MyTextWidget2State extends State<MyTextWidget2> {
                 child: Container(
                     color: Colors.greenAccent,
                     child: ListView(
-
                       children: [
                         Container(
                           child: Text(
@@ -120,6 +129,10 @@ class MyTextWidget2State extends State<MyTextWidget2> {
 
                             ),
                           ),
+                        ),
+                        RaisedButton(
+                          onPressed: _launchURL,
+                          child: Text("launch_uri"),
                         )
                       ],
                     )
