@@ -1,144 +1,216 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:url_launcher/url_launcher.dart';
-
-import 'package:flutter_app_demo1/model/data.dart';
 
 void main() {
   runApp(
-    MaterialApp(
-      title: "Flutter APP",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "HomePageTitle"
-          ),
-        ),
-        body: MyTextWidget2(),
-      )
-    )
+      MaterialAppVC()
   );
 }
 
-class MyTextWidget1 extends StatelessWidget {
+class MaterialAppVC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: 44,
-      color: Color(0xff318bf5),
-      child: Text(
-        "Hello world\nhello kugou \nhelloQQ\nhello WeChat",
-        textDirection: TextDirection.ltr, // ltr: left to right, rtl: right to left
-        style: TextStyle(
-          color: Color(0xffffffff),
-          fontSize: 22,
-        ),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.center,
+    return MaterialApp(
+      home: Scaffold(
+        body: FirstPage(),
       ),
-
+      routes: {
+        "/first": (context) => FirstPage(),
+        "/second": (context) => SecondPage(),
+        "/third": (context) => ThirdPage(),
+        "/forth": (context) => ForthPage(),
+        "/fifth": (context) => FifthPage(),
+        "/sixth": (context) => SixthPage(),
+      }
     );
   }
 }
 
-class MyTextWidget2 extends StatefulWidget {
+class FirstPage extends StatelessWidget {
   @override
-  State<MyTextWidget2> createState() {
-    return MyTextWidget2State();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("FirstPage")
+      ),
+      body: Container(
+        child: RaisedButton(
+          child: Text("NavigateTo"),
+          onPressed: () {
+            Future a = Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SecondPage(),
+                settings: RouteSettings(
+                  arguments: {
+                    "from": "FirstPage-to-SecondPage"
+                  }
+                )
+              )
+            );
+            a.then((value) {
+              print(value);
+            });
+          }
+        )
+      )
+    );
   }
 }
 
-
-class MyTextWidget2State extends State<MyTextWidget2> {
-
-  List<Widget> getList() {
-    List<Widget> res = [];
-    List data = ['电脑', '手机', '相机', '衣服', '平板', '其他'];
-    for(int i = 0; i < data.length; i++) {
-      res.add(                Container(
-        padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-        alignment: Alignment.center,
-        child: Text(
-          "品类-${data[i]}",
-          style: TextStyle(
-          ),
-        ),
-      ));
-    }
-    return res;
-  }
-
-  Future buildList() async {
-    Dio dio = new Dio();
-    // Uri uir = new Uri(host: "http://weixincs.midea.com/ccss-ipms-cis-rpc/uat/data/queryYbRecord?openId=oFtQywLXiiIJ5X52uxLYsYUSO22M");
-    // Response res = await dio.get("http://weixincs.midea.com/ccss-ipms-cis-rpc/uat/data/queryYbRecord?openId=oFtQywLXiiIJ5X52uxLYsYUSO22M");
-    Response res = await dio.get("http://192.168.56.1:8000/response.json");
-    print(res.toString());
-    print("-------------------------------------");
-    Map map = jsonDecode(res.toString());
-    print(map);
-    Data data = Data.fromJson(map);
-    print(data);
-    print(data.status.runtimeType);
-    print(data.error.runtimeType);
-    print(data.content.runtimeType);
-    print(data.content.name);
-    print(data.content.age);
-    print(data.content.height);
-    print("-------------------------------------");
-    // var map = jsonDecode(res.toString());
-
-  }
-
+class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    buildList();
-    _launchURL() async {
-      const url = 'https://flutter.cn';
-      if (await canLaunch(url)) {
-        print("sure");
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
-    return Container(
-        child: Row(
-          children: [
-            Container(
-              width: 100,
-              color: Colors.pinkAccent,
-              child: ListView(
-                children: getList(),
-              ),
+    // 上一个页面传递的参数
+    print(ModalRoute.of(context).settings.arguments);
+    // 返回键
+    return WillPopScope(
+        child: Scaffold(
+          appBar: AppBar(
+              title: Text("SecondPage")
+          ),
+          body: Container(
+            child: Column(
+              children: [
+                RaisedButton(
+                    child: Text("Navigator.push"),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/third", arguments: {"from": "SecondPage-to-ThirdPage"});
+                    }
+                ),
+                RaisedButton(
+                    child: Text("Navigator.pop"),
+                    onPressed: () {
+                      Navigator.pop(context, {"id": 1});
+                    }
+                ),
+              ],
             ),
-            Expanded(
-              // width: 300,
-              // color: Colors.greenAccent,
-                child: Container(
-                    color: Colors.greenAccent,
-                    child: ListView(
-                      children: [
-                        Container(
-                          child: Text(
-                            "电脑3",
-                            style: TextStyle(
+          ),
+        ),
+      onWillPop: () {
+        print("点击返回键");
+        Navigator.pop(context, {"id": 2});
+        // return Future(()=>true);
+        return Future.value(true);
+      },
+    );
+  }
+}
 
-                            ),
-                          ),
-                        ),
-                        RaisedButton(
-                          onPressed: _launchURL,
-                          child: Text("launch_uri"),
-                        )
-                      ],
-                    )
-                )
+class ThirdPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("ThirdPage")
+        ),
+        body: Container(
+            child: Column(
+              children: [
+                RaisedButton(
+                    child: Text("Navigator.push"),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/forth", arguments: {"from": "ThirdPage-to-ForthPage"});
+                    }
+                ),
+                RaisedButton(
+                    child: Text("Navigator.pop"),
+                    onPressed: () {
+                      Navigator.pop(context, {"id": 1});
+                    }
+                ),
+              ],
             )
-          ],
+        )
+    );
+  }
+}
+
+class ForthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("ForthPage")
+        ),
+        body: Container(
+            child: Column(
+              children: [
+                RaisedButton(
+                    child: Text("Navigator.push"),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/fifth", arguments: {"from": "ForthPage-to-FifthPage"});
+                    }
+                ),
+                RaisedButton(
+                    child: Text("Navigator.pop"),
+                    onPressed: () {
+                      // Navigator.pop(context, {"id": 1});
+                    }
+                ),
+              ],
+            )
+        )
+    );
+  }
+}
+
+class FifthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("FifthPage")
+        ),
+        body: Container(
+            child: Column(
+              children: [
+                RaisedButton(
+                    child: Text("Navigator.push"),
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/sixth", arguments: {"from": "FifthPage-to-SixthPage"});
+                    }
+                ),
+                RaisedButton(
+                    child: Text("Navigator.pop"),
+                    onPressed: () {
+                      Navigator.popUntil(context, (route) {
+                        // return route.isFirst; // 回到第一页
+                        return route.settings.name == '/third';
+                      });
+                    }
+                ),
+              ],
+            )
+        )
+    );
+  }
+}
+
+class SixthPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text("SixthPage")
+        ),
+        body: Container(
+            child: Column(
+              children: [
+                RaisedButton(
+                    child: Text("Stop"),
+                    onPressed: () {
+                      // Navigator.pushNamed(context, "/third", arguments: {"from": "second-to-third"});
+                    }
+                ),
+                RaisedButton(
+                    child: Text("Navigator.pop"),
+                    onPressed: () {
+                      // Navigator.pop(context, {"id": 1});
+                    }
+                ),
+              ],
+            )
         )
     );
   }
