@@ -41,6 +41,7 @@ class FirstPage extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => SecondPage(),
                 settings: RouteSettings(
+                  name: '/second', // 此处指定 name 否者使用 until 方法出栈将会出现空栈仍无法到指定页面
                   arguments: {
                     "from": "FirstPage-to-SecondPage"
                   }
@@ -80,7 +81,11 @@ class SecondPage extends StatelessWidget {
                 RaisedButton(
                     child: Text("Navigator.pop"),
                     onPressed: () {
-                      Navigator.pop(context, {"id": 1});
+                      // Navigator.pop(context, {"id": 1}); // 直接出栈
+                      // Navigator.maybePop(context, {"id": "maybePop"}); // 能出栈就立即出栈
+                      // bool isTrue = Navigator.canPop(context); // 获取是否可以出栈
+                      // print(isTrue);
+
                     }
                 ),
               ],
@@ -89,7 +94,7 @@ class SecondPage extends StatelessWidget {
         ),
       onWillPop: () {
         print("点击返回键");
-        Navigator.pop(context, {"id": 2});
+        // Navigator.pop(context, {"id": 2});
         // return Future(()=>true);
         return Future.value(true);
       },
@@ -146,6 +151,11 @@ class ForthPage extends StatelessWidget {
                     child: Text("Navigator.pop"),
                     onPressed: () {
                       // Navigator.pop(context, {"id": 1});
+                      Navigator.popUntil(context, (route) {
+                        // print(route.settings.name);
+                        print("-------------");
+                        return route.settings.name == '/second';
+                      });
                     }
                 ),
               ],
