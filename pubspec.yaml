@@ -23,16 +23,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+  dio: ^3.0.9
+  json_annotation: ^2.4.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  # 调用默认浏览器打开 url, flutter版本与插件版本需要一定匹配，不匹配请更换其他版本试试（0.0）
+
+  url_launcher: 4.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  json_serializable: ^3.0.0
+  build_runner: ^1.6.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
