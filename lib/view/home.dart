@@ -37,7 +37,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: tabIndex == 0 ? null : AppBar(
         title: Text(
           "网抑云"
         ),
