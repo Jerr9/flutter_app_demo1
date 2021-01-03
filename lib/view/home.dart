@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo1/view/message.dart';
-import 'package:flutter_app_demo1/view/play.dart';
-import 'package:flutter_app_demo1/view/search.dart';
+import 'package:flutter_app_demo1/view/home/drawer/drawerView.dart';
+import 'package:flutter_app_demo1/view/home/shoppingHome.dart';
+import 'package:flutter_app_demo1/view/home/categoryList.dart';
+import 'package:flutter_app_demo1/view/home/shoppingCart.dart';
+import 'package:flutter_app_demo1/view/home/personal.dart';
 
 // 测试缓存的实现
 
@@ -16,28 +18,33 @@ class HomePageState extends State<HomePage> {
   final List<BottomNavigationBarItem> tabList = [
     BottomNavigationBarItem(
       icon: Icon(Icons.home),
-      label: "搜索",
+      label: "首页",
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.music_video),
-      label: "听歌",
+      icon: Icon(Icons.format_list_bulleted),
+      label: "分类",
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.message),
-      label: "消息",
+      icon: Icon(Icons.shopping_cart),
+      label: "购物车",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person),
+      label: "我的",
     ),
   ];
 
   final List<Widget> bodyList = [
-    SearchPage(),
-    PlayPage(),
-    MessagePage(),
+    ShoppingHomePage(),
+    CategoryListPage(),
+    ShoppingCartPage(),
+    PersonalPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabIndex == 0 ? null : AppBar(
+      appBar: AppBar(
         title: Text(
           "网抑云"
         ),
@@ -49,28 +56,54 @@ class HomePageState extends State<HomePage> {
       // ),
       // 缓存实现方式2：利用 Stack + Offstage
       body: Stack(
-          children: [
-            Offstage(
-              offstage: tabIndex != 0,
-              child: bodyList[0],
-            ),
-            Offstage(
-              offstage: tabIndex != 1,
-              child: bodyList[1],
-            ),
-            Offstage(
-              offstage: tabIndex != 2,
-              child: bodyList[2],
-            ),
-          ]
+        children: [
+          Offstage(
+            offstage: tabIndex != 0,
+            child: bodyList[0],
+          ),
+          Offstage(
+            offstage: tabIndex != 1,
+            child: bodyList[1],
+          ),
+          Offstage(
+            offstage: tabIndex != 2,
+            child: bodyList[2],
+          ),
+          Offstage(
+            offstage: tabIndex != 3,
+            child: bodyList[3],
+          ),
+        ]
       ),
 
+      // 左侧边栏
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: [
+      //       Text("a"),
+      //       Text("a"),
+      //       Text("a"),
+      //       Text("a"),
+      //       Text("a"),
+      //       Text("a"),
+      //       Text("a"),
+      //     ],
+      //   )
+      // ),
+
+      drawerEnableOpenDragGesture: true,
+
+      endDrawer: tabIndex == 3 ? DrawerView() : null,
+
+      endDrawerEnableOpenDragGesture: true,
 
       // body: bodyList[this.tabIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         selectedIconTheme: IconThemeData(
           color: Colors.redAccent,
         ),
+        selectedFontSize: 12.0,
         unselectedIconTheme: IconThemeData(
           color: Colors.black38,
         ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MessagePage extends StatefulWidget {
+class PersonalPage extends StatefulWidget {
 
   @override
-  MessagePageState createState() => MessagePageState();
+  PersonalPageState createState() => PersonalPageState();
 }
 
-class MessagePageState extends State<MessagePage> {
+class PersonalPageState extends State<PersonalPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class MessagePageState extends State<MessagePage> {
         child: Column(
           children: [
             Container(
-                child: Text("MessagePage")
+                child: Text("PersonalPageState")
             ),
           ],
         )
