@@ -90,7 +90,7 @@ class DrawerViewState extends State<DrawerView> {
                           onTap: () {
                             print("abc");
                             // print("abc");
-                            Navigator.of(context).pushNamed("/versionHistory");
+                            Navigator.of(context).pushNamed("/versionHistoryPage");
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

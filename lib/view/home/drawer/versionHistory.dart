@@ -1,5 +1,4 @@
 
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,14 +11,12 @@ class VersionHistoryPage extends StatefulWidget {
 
 class VersionHistoryState extends State<VersionHistoryPage> {
 
-  List<Widget> _getDesc(dynamic list) {
-    print(list.length);
-    // var _list = json.decoder(list);
-    // print(list.runtimeType);
-    const resList = [];
-    [].forEach((a){
+  List<Widget> _getDesc(List list) {
+    List<Widget> resList = [];
+    list.forEach((a){
       resList.add(
         Container(
+          alignment: Alignment.centerLeft,
           child: Text('$a')
         )
       );
@@ -69,7 +66,7 @@ class VersionHistoryState extends State<VersionHistoryPage> {
                           children: [
                             Container(
                               alignment: Alignment.topRight,
-                              child: Text('${data[index]["date"]} ${data[index]["desc"]} ${data[index]["desc"].runtimeType}', style: TextStyle(color: Color(0x66666666))),
+                              child: Text('${data[index]["date"]}', style: TextStyle(color: Color(0x66666666))),
                             ),
                             Column(
                               children: _getDesc(data[index]['desc']),

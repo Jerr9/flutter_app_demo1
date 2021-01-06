@@ -16,6 +16,12 @@ class PersonalPageState extends State<PersonalPage> {
             Container(
                 child: Text("PersonalPageState")
             ),
+            RaisedButton(
+              child: Text("个人信息"),
+              onPressed: () {
+                Navigator.of(context).pushNamed("/userBaseInfoPage");
+              }
+            )
           ],
         )
     );

@@ -32,6 +32,9 @@ dependencies:
 
   url_launcher: 4.1.0
 
+  # banner 库
+  banner: ^0.1.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
