@@ -35,6 +35,9 @@ dependencies:
   # banner 库
   banner: ^0.1.3
 
+  #
+  shake_animation_widget: ^2.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -57,9 +60,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - lib/assets/datas/versionHistory.json
-    - lib/assets/images/memo.png
-    - lib/assets/images/memo.jpg
+    - assets/datas/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

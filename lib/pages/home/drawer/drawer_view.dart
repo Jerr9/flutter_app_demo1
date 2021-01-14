@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app_demo1/pages/home/drawer/version_history_page.dart';
 
 class DrawerView extends StatefulWidget {
   @override
@@ -20,40 +21,51 @@ class DrawerViewState extends State<DrawerView> {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(60.0),
+                    // shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage("lib/assets/images/memo.jpg"),
+                      image: AssetImage("assets/images/memo.jpg"),
                     )
                 ),
               ),
             ),
-            // Container(
-            //   alignment: Alignment.center,
-            //   width: 120,
-            //   height: 120,
-            //   margin: EdgeInsets.all(0),
-            //   child: CircleAvatar(
-            //     radius: 60.0,
-            //     backgroundImage: AssetImage( //背景图 child可以添加内容
-            //       "lib/assets/images/memo.jpg",
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   width: 120,
-            //   height: 120,
-            //   child: Container(
-            //     margin: EdgeInsets.zero,
-            //     decoration: BoxDecoration(
-            //         shape: BoxShape.circle, //可以设置角度，BoxShape.circle直接圆形
-            //         image: DecorationImage(
-            //           fit: BoxFit.contain,
-            //           image: AssetImage(
-            //             "lib/assets/images/memo.jpg",
-            //           ),
-            //         )
-            //     ),
+
+            Container(
+              alignment: Alignment.bottomRight,
+              width: 120,
+              height: 120,
+              child: CircleAvatar(
+                radius: 60.0,
+                backgroundImage: AssetImage( //背景图 child可以添加内容
+                  "assets/images/memo.jpg",
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 120,
+              height: 120,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                margin: EdgeInsets.zero,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, //可以设置角度，BoxShape.circle直接圆形
+                    image: DecorationImage(
+                      fit: BoxFit.contain,
+                      image: AssetImage(
+                        "assets/images/memo.jpg",
+                      ),
+                    )
+                ),
+              ),
+            ),
+            // Align(
+            //   // heightFactor: 150,
+            //   child: Row(
+            //     children: [
+            //       Container(height: 40, width: 30, color: Colors.red),
+            //       Container(height: 90, width: 30, color: Colors.green),
+            //       Container(height: 60, width: 30, color: Colors.blue),
+            //     ],
             //   ),
             // ),
 
@@ -89,8 +101,7 @@ class DrawerViewState extends State<DrawerView> {
                         child: GestureDetector(
                           onTap: () {
                             print("abc");
-                            // print("abc");
-                            Navigator.of(context).pushNamed("/versionHistoryPage");
+                            Navigator.of(context).pushNamed(VersionHistoryPage.name);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

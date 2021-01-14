@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class UserBaseInfoPage extends StatefulWidget {
+  static final String name = "/userBaseInfoPage";
   @override
   UserBaseInfoPageState createState() => UserBaseInfoPageState();
 }

@@ -1,14 +1,15 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo1/view/home/drawer/drawerView.dart';
-import 'package:flutter_app_demo1/view/home/shoppingHome.dart';
-import 'package:flutter_app_demo1/view/home/categoryList.dart';
-import 'package:flutter_app_demo1/view/home/shoppingCart.dart';
-import 'package:flutter_app_demo1/view/home/personal.dart';
+import 'package:flutter_app_demo1/pages/home/drawer/drawer_view.dart';
+import 'package:flutter_app_demo1/pages/home/mall_home_page.dart';
+import 'package:flutter_app_demo1/pages/home/category_list_page.dart';
+import 'package:flutter_app_demo1/pages/home/shopping_cart_page.dart';
+import 'package:flutter_app_demo1/pages/home/personal_page.dart';
 
 // 测试缓存的实现
 
 class HomePage extends StatefulWidget {
+  static final String name = '/homePage';
   @override
   HomePageState createState() => HomePageState();
 }
@@ -44,11 +45,11 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: tabIndex != 0 ? AppBar(
         title: Text(
           "Memo"
         ),
-      ),
+      ) : null,
       // 缓存实现方式1：利用 IndexedStack 做页面缓存，除 index 外所指页面并未销毁，仅不可见
       // body: IndexedStack(
       //   index: tabIndex,

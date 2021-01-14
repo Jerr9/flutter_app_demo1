@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_demo1/model/localData/version_history.dart';
 
 class VersionHistoryPage extends StatefulWidget {
+  static final String name = "/versionHistoryPage";
   @override
   VersionHistoryState createState() => VersionHistoryState();
 }
@@ -30,8 +31,9 @@ class VersionHistoryState extends State<VersionHistoryPage> {
       appBar: AppBar(
         title: Text("版本历史"),
       ),
+
       body: FutureBuilder(
-        future: DefaultAssetBundle.of(context).loadString("lib/assets/datas/versionHistory.json"),
+        future: DefaultAssetBundle.of(context).loadString("assets/datas/versionHistory.json"),
         builder: (context, snapshot) {
           List<dynamic> data = json.decode(snapshot.data.toString());
           if (snapshot.hasData) {
@@ -86,9 +88,6 @@ class VersionHistoryState extends State<VersionHistoryPage> {
             );
           }
         },
-        // children: [
-
-        // ],
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo1/view/popularPage.dart';
-import 'package:flutter_app_demo1/view/recommendPage.dart';
-import 'package:flutter_app_demo1/view/westernPage.dart';
+import 'package:flutter_app_demo1/pages/popular_page.dart';
+import 'package:flutter_app_demo1/pages/recommend_page.dart';
+import 'package:flutter_app_demo1/pages/western_page.dart';
 
 class SearchPage extends StatefulWidget {
 

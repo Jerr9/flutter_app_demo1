@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo1/view/home.dart';
-import 'package:flutter_app_demo1/view/home/drawer/versionHistory.dart';
-import 'package:flutter_app_demo1/view/user/userBaseInfoPage.dart';
+import 'package:flutter_app_demo1/app_routers.dart';
 
 void main() {
   runApp(
@@ -10,12 +8,9 @@ void main() {
       theme: ThemeData(
         primaryColor: Colors.redAccent,
       ),
-      home: HomePage(),
-      routes: {
-        "/homePage": (context) => HomePage(),
-        "/versionHistoryPage": (context) => VersionHistoryPage(),
-        "/userBaseInfoPage": (context) => UserBaseInfoPage(),
-      },
+      // home: AppRouteConfig.defaultRouteWidget,
+      initialRoute: AppRouteConfig.defaultRouteName,
+      routes: AppRouteConfig.routers,
     )
   );
 }
