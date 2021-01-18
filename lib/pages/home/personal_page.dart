@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo1/pages/test/sign_up_main_page.dart';
+import 'package:flutter_app_demo1/pages/test/component_status/component_status_page.dart';
+import 'package:flutter_app_demo1/pages/test/navigator/sign_up_main_page.dart';
 
 class PersonalPage extends StatefulWidget {
 
@@ -38,6 +39,10 @@ class PersonalPageState extends State<PersonalPage> {
                     )
                   );
                 }
+            ),
+            RaisedButton(
+              child: Text("ComponentStatuTest"),
+              onPressed: () => {Navigator.of(context).pushNamed(ComponentStatusPage.name)},
             ),
           ],
         )

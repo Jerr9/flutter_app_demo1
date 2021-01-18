@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo1/pages/home/drawer/drawer_view.dart';
 import 'package:flutter_app_demo1/pages/home/mall_home_page.dart';
-import 'package:flutter_app_demo1/pages/home/category_list_page.dart';
+import 'file:///E:/demo/flutter/flutter_app_demo1/lib/pages/home/category_list_page/category_list_page.dart';
 import 'package:flutter_app_demo1/pages/home/shopping_cart_page.dart';
 import 'package:flutter_app_demo1/pages/home/personal_page.dart';
 

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo1/pages/test/sign_password_page.dart';
+import 'file:///E:/demo/flutter/flutter_app_demo1/lib/pages/test/navigator/sign_password_page.dart';
 
 class SignUsernamePage extends StatelessWidget {
   static final String name = "signUp/username";

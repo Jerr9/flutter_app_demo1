@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 
 class RecommendPage extends StatefulWidget {
   @override
-  @override
   State createState() => RecommendPageState();
 }
 
