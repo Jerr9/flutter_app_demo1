@@ -15,24 +15,28 @@ class CategoryListState extends State<CategoryList> {
   Widget _buildWidget(List list) {
 
     List<Widget> resultList = list.asMap().keys.map((idx) {
-      // print(list[idx]);
       return (
-        InkWell(
-          child: Container(
-            padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
-            width: 100,
-            color: widget.activeIndex == idx ? Colors.redAccent : null,
-            child: Text('${list[idx]['categoryName']}',
-              style: TextStyle(
-                fontSize: 14,
-                color: widget.activeIndex == idx ? Colors.white : null,
+          SingleChildScrollView(
+          child:
+
+            InkWell(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                width: 100,
+                color: widget.activeIndex == idx ? Colors.redAccent : null,
+                child: Text('${list[idx]['categoryName']}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: widget.activeIndex == idx ? Colors.white : null,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          onTap: () {
-            widget.onChange(idx);
-          },
+              onTap: () {
+                widget.onChange(idx);
+              },
+            )
+
         )
       );
     }).toList();
@@ -45,17 +49,19 @@ class CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      decoration: BoxDecoration(
-        border: Border(right: BorderSide(
-          width: 1,
-          color: Color(0xeaeaeaea),
-          style: BorderStyle.solid,
-        )),
+    return SingleChildScrollView(
+      child: Container(
+        width: 100,
+        decoration: BoxDecoration(
+          border: Border(right: BorderSide(
+            width: 1,
+            color: Color(0xeaeaeaea),
+            style: BorderStyle.solid,
+          )),
+        ),
+        child: this._buildWidget(widget.list),
+        // child: Text("xxx"),
       ),
-      child: this._buildWidget(widget.list),
-      // child: Text("xxx"),
     );
   }
 }

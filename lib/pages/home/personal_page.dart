@@ -12,7 +12,7 @@ class PersonalPageState extends State<PersonalPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -41,7 +41,7 @@ class PersonalPageState extends State<PersonalPage> {
                 }
             ),
             RaisedButton(
-              child: Text("ComponentStatuTest"),
+              child: Text("ComponentStatusTest"),
               onPressed: () => {Navigator.of(context).pushNamed(ComponentStatusPage.name)},
             ),
           ],

@@ -17,13 +17,41 @@ class ProductListState extends State<ProductList> {
   List<Widget> _getProductWidgets(List list) {
     List<Widget> res = [];
     list.forEach((model) {
-      print(model.toString());
-      print("--------------");
       res.add(
         InkWell(
-          child: Container(
+          child: Column(
             // child: Text(ele['productName']),
-            child: Text(list[0]['productName']),
+            children: [
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+              Text(list[0]['productName']),
+            ],
           ),
           onTap: () {
             widget.onChange({"name": "1"});
@@ -37,11 +65,10 @@ class ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.list);
-    print("xxxxxxxxxxxx?????");
     return Expanded(
       flex: 1,
       child: Container(
+        height: 300,
         child: ListView(
           children: this._getProductWidgets(widget.list),
         ),
